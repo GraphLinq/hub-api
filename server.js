@@ -103,7 +103,7 @@ app.use(bodyParser.json());
 
 app.listen(port);
 
-console.log('Allowed origins            : ', allowedOrigins);
+// console.log('Allowed origins            : ', allowedOrigins);
 console.log('API server started on port : ', port);
 app.fire.call["ON_SCHEDULE_CREATE"]();
 
