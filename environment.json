@@ -1,0 +1,12 @@
+{
+    "rpcETH": {
+        "url": "https://mainnet.infura.io/v3/00e69497300347a38e75c3287621cb16",
+        "name": "Ethereum",
+        "chainId": "1"
+    },
+    "rpcGLQ": {
+        "url": "https://glq-dataseed.graphlinq.io",
+        "name": "Graphlinq",
+        "chainId": "614"
+    }
+}
