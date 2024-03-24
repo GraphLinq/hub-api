@@ -21,7 +21,7 @@ const parseSwapEventData = async (sender, recipient, amount0, amount1, sqrtPrice
         timestamp: timestamp,
         sender: sender,
         recipient: recipient,
-        type: Number(ethers.utils.formatEther(amount0)) > 0 ? 'sell' : 'buy',
+        type: Number(ethers.utils.formatEther(amount0)) > 0 ? 'buy' : 'sell',
         amount0: {
             currency: 'WETH',
             amount: Math.abs(Number(ethers.utils.formatEther(amount0))).toFixed(18)
