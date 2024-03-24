@@ -1,0 +1,9 @@
+{
+  "apps": [
+    {
+      "name": "Hub API",
+      "script": "npm",
+      "args": "run start"
+    }
+  ]
+}
