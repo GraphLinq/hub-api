@@ -2,6 +2,7 @@ const { ethers } = require("ethers");
 const moment = require("moment");
 const fs = require('fs');
 const { getETHPriceUSD, getGLQPriceUSD } = require("../shared/prices");
+const { getPricesInCache } = require("./priceScheduler");
 
 const parseSwapEventData = async (sender, recipient, amount0, amount1, sqrtPriceX96, liquidity, tick, block, txReceipt, gasPrice) => {
     const timestamp = block?.timestamp ?? moment().unix();
@@ -12,8 +13,7 @@ const parseSwapEventData = async (sender, recipient, amount0, amount1, sqrtPrice
     const priceInToken1 = (tickOfPrice * (10 ** (token0Decimals))) / (10 ** token1Decimals);
     const priceInToken0 = 1 / priceInToken1;
 
-    const ethPriceInUSD = await getETHPriceUSD();
-    const glqPriceInUSD = await getGLQPriceUSD();
+    const prices = await getPricesInCache();
 
     return {
         pool: 'WETH/WGLQ',
@@ -30,8 +30,8 @@ const parseSwapEventData = async (sender, recipient, amount0, amount1, sqrtPrice
             currency: 'WGLQ',
             amount: Math.abs(Number(ethers.utils.formatEther(amount1))).toFixed(18)
         },
-        price: (priceInToken0 * ethPriceInUSD).toFixed(18),
-        gasCostUsed: (Number(ethers.utils.formatEther(txReceipt.gasUsed.mul(gasPrice))) * glqPriceInUSD).toFixed(18)
+        price: (priceInToken0 * prices.ETH).toFixed(18),
+        gasCostUsed: (Number(ethers.utils.formatEther(txReceipt.gasUsed.mul(gasPrice))) * prices.GLQ).toFixed(18)
     };
 }
 
