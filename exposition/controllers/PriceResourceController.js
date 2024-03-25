@@ -8,6 +8,7 @@ const fs = require('fs');
 const moment = require('moment');
 const { getStakingTVL, getStakingTVLInCache } = require('../../schedulers/stakingScheduler');
 const { getTotalLiquidAssetsOnChainInCache } = require('../../schedulers/totalLiquidAssetsOnChainScheduler');
+const { getPricesInCache } = require('../../schedulers/priceScheduler');
 
 const cache = {
     time: 0,
@@ -32,13 +33,7 @@ const PriceResourceController = {
                 res.send(cache.data);
                 return ;
             }
-            const environement = JSON.parse(fs.readFileSync('./environment.json'));
-            const priceInUSDT = await getUniswapV3TokenPrice(
-                '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', // WETH
-                '0xdAC17F958D2ee523a2206206994597C13D831ec7', // USDT
-                '0x4e68ccd3e89f51c3074ca5072bbac773960dfa36', {
-                    environement: environement
-                }, 'ETH');
+            const prices = await getPricesInCache();
             const swaps = await getSwaps();
             const swapAnalytics = swaps.reduce((acc, s) => {
                 if (acc.highPrice < Number(s.price)) {
@@ -61,7 +56,7 @@ const PriceResourceController = {
             const entryPrice = swaps.length > 0 ? swaps[0].price : '0';
             const closePrice = swaps.length > 0 ? swaps[swaps.length - 1].price : '0';
 
-            swapAnalytics.volume = (swapAnalytics.volume * Number(priceInUSDT)).toFixed(18);
+            swapAnalytics.volume = (swapAnalytics.volume * Number(prices.ETH)).toFixed(18);
 
             const lastsSwaps = swaps.slice(-10);
             const stakingTVL = await getStakingTVLInCache();
