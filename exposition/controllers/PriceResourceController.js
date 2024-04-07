@@ -70,7 +70,8 @@ const PriceResourceController = {
                 swaps: lastsSwaps,
                 totalLiquidAssetsOnChain: totalLiquidAssetsOnChain,
                 stakingTVL: stakingTVL,
-                preferedPool: 'WETH/WGLQ'
+                preferedPool: 'WETH/WGLQ',
+                prices: prices
             };
 
             cache.time = moment().toDate().getTime();
