@@ -34,13 +34,30 @@ const _ = function(exp) {
  *       - name: Hub
  *     responses:
  *       200:
- *         description: Sucess
+ *         description: Success
  *       404:
  *         description: Authentication failed
  *       500:
  *         description: Server Error
  */
 _("GET /stats ./exposition/controllers/PriceResourceController.stats()");
+
+/**
+ * @swagger
+ * /challenges/{address}:
+ *   get:
+ *     summary: Challenges Stats
+ *     tags:
+ *       - name: Hub
+ *     responses:
+ *       200:
+ *         description: Success
+ *       404:
+ *         description: Authentication failed
+ *       500:
+ *         description: Server Error
+ */
+_("GET /challenges/:address ./exposition/controllers/ChallengesResourceController.challenges()");
 
 /** END ROUTE DECLARATION ZONE */
 
