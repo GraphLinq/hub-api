@@ -5,7 +5,7 @@ const path = './analytics/challengesAccounts.json';
 const getAllChallengesAccounts = () => {
     if (fs.existsSync(path)) {
         const json = JSON.parse(fs.readFileSync(path).toString());
-        return json[address];
+        return json;
     }
     return [];
 };
@@ -13,9 +13,11 @@ const getAllChallengesAccounts = () => {
 const getChallengesAccount = (address) => {
     if (fs.existsSync(path)) {
         const json = JSON.parse(fs.readFileSync(path).toString());
-        return json[address];
+        if (json[address] !== undefined) {
+            return json[address];
+        }
     }
-    return { address: address, rewards: 0, challenges: [] };
+    return { address: address, rewards: 0, challenges: [], claims: [] };
 };
 
 const saveChallengesAccount = (account) => {

@@ -7,8 +7,8 @@ const getAllChallenges = () => {
             reward: 1,
             progression: 0,
             status: (account) => {
-                if (account?.swaps !== undefined) {
-                    if (account?.claims['SWAP-GLQ-FOR-ANOTHER-TOKEN']) {
+                if (account?.swaps !== undefined && account?.swaps['WETH/WGLQ'] === true) {
+                    if (account.claims.includes('SWAP-GLQ-FOR-ANOTHER-TOKEN')) {
                         return 'COMPLETED';
                     }
                     return 'CLAIMABLE';

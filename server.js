@@ -4,6 +4,7 @@ const fs = require('fs');
 const { managerSwapsData } = require('./schedulers/swapManager');
 const { getStakingTVL, saveStakingTVL } = require('./schedulers/stakingScheduler');
 const { getTotalLiquidAssetsOnChain, saveTotalLiquidAssetsOnChain } = require('./schedulers/totalLiquidAssetsOnChainScheduler');
+const { getChallengesAccount, saveChallengesAccount } = require('./challengesAccounts');
 
 var express = require('express'),
     app = express(),
@@ -109,6 +110,17 @@ app.fire.call["ON_SCHEDULE_CREATE"]();
 
 (async () => {
   await managerSwapsData((newSwap) => {
+
+    if (newSwap.pool === 'WETH/WGLQ') {
+      const account = getChallengesAccount(newSwap.recipient);
+
+      if (account.swaps === undefined) {
+        account.swaps = {};
+      }
+      account.swaps['WETH/WGLQ'] = true;
+      saveChallengesAccount(account);
+    }
+    
     console.log('New Swap', newSwap);
   });
 })();

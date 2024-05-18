@@ -59,6 +59,23 @@ _("GET /stats ./exposition/controllers/PriceResourceController.stats()");
  */
 _("GET /challenges/:address ./exposition/controllers/ChallengesResourceController.challenges()");
 
+/**
+ * @swagger
+ * /claim/{address}:
+ *   get:
+ *     summary: Claim rewards
+ *     tags:
+ *       - name: Hub
+ *     responses:
+ *       200:
+ *         description: Success
+ *       404:
+ *         description: Authentication failed
+ *       500:
+ *         description: Server Error
+ */
+_("GET /claim/:address ./exposition/controllers/ChallengesResourceController.claim()");
+
 /** END ROUTE DECLARATION ZONE */
 
 tableRoute[0] = tableRoute[0].sort((a, b) => a.Routes > b.Routes ? 1 : -1);
