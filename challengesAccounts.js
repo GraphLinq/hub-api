@@ -7,7 +7,7 @@ const getAllChallengesAccounts = () => {
         const json = JSON.parse(fs.readFileSync(path).toString());
         return json;
     }
-    return [];
+    return {};
 };
 
 const getChallengesAccount = (address) => {
