@@ -61,9 +61,9 @@ _("GET /challenges/:address ./exposition/controllers/ChallengesResourceControlle
 
 /**
  * @swagger
- * /claim/{address}:
+ * /ladder:
  *   get:
- *     summary: Claim rewards
+ *     summary: Ladder Stats
  *     tags:
  *       - name: Hub
  *     responses:
@@ -74,7 +74,7 @@ _("GET /challenges/:address ./exposition/controllers/ChallengesResourceControlle
  *       500:
  *         description: Server Error
  */
-_("GET /claim/:address ./exposition/controllers/ChallengesResourceController.claim()");
+_("GET /ladder ./exposition/controllers/ChallengesResourceController.ladder()");
 
 /** END ROUTE DECLARATION ZONE */
 

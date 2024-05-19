@@ -31,6 +31,7 @@ const saveChallengesAccount = (account) => {
 };
 
 module.exports = {
+    getAllChallengesAccounts,
     getChallengesAccount,
     saveChallengesAccount
 };
