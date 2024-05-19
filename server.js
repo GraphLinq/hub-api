@@ -118,7 +118,7 @@ app.fire.call["ON_SCHEDULE_CREATE"]();
         if (account.swaps === undefined) {
           account.swaps = {};
         }
-        if (account.swaps['WETH/WGLQ'] == undefined) {
+        if (account.swaps['WETH/WGLQ'] == undefined || account.swaps['WETH/WGLQ'] === true) {
           account.swaps['WETH/WGLQ'] = 0;
         }
         const amountOfWGLQInUSD = Number(newSwap.price) * Number(newSwap.amount1.amount);
