@@ -1,4 +1,4 @@
-const { priceScheduler, pricesScheduler, savePrices } = require('./schedulers/priceScheduler');
+const { priceScheduler, pricesScheduler, savePrices, getPricesInCache } = require('./schedulers/priceScheduler');
 const { swapEventsHook, getSwapEventsFromBlockNumber } = require('./schedulers/swapEventsScheduler');
 const fs = require('fs');
 const { managerSwapsData } = require('./schedulers/swapManager');
@@ -114,11 +114,17 @@ app.fire.call["ON_SCHEDULE_CREATE"]();
     if (newSwap.pool === 'WETH/WGLQ') {
       const account = getChallengesAccount(newSwap.recipient);
 
-      if (account.swaps === undefined) {
-        account.swaps = {};
+      if (account !== undefined) {
+        if (account.swaps === undefined) {
+          account.swaps = {};
+        }
+        if (account.swaps['WETH/WGLQ'] == undefined) {
+          account.swaps['WETH/WGLQ'] = 0;
+        }
+        const amountOfWGLQInUSD = Number(newSwap.price) * Number(newSwap.amount1.amount);
+        account.swaps['WETH/WGLQ'] += Number(amountOfWGLQInUSD);
+        saveChallengesAccount(account);
       }
-      account.swaps['WETH/WGLQ'] = true;
-      saveChallengesAccount(account);
     }
     
     console.log('New Swap', newSwap);
