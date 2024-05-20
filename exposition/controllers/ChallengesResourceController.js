@@ -82,7 +82,7 @@ const ChallengesResourceController = {
                     return acc;
                 }, 0);
                 return { address: account.address, points: totalPoints };
-            }).sort((a, b) => a.points - b.points);
+            }).sort((a, b) => b.points - a.points);
 
             let i = (page * size) - size;
             const ladderPartition = [];

@@ -58,7 +58,7 @@ const getAllChallenges = () => {
         {
             id: 'SWAP-GLQ-FOR-ANOTHER-TOKEN-100K+',
             label: 'Swap GLQ for another token 100K+ Volume',
-            reward: 10,
+            reward: 15,
             progression: (account) => {
                 if (account?.swaps !== undefined && account?.swaps['WETH/WGLQ'] >= 100000) {
                     return Math.min(account?.swaps['WETH/WGLQ'] * 100 / 100000, 100);
