@@ -57,6 +57,7 @@ const getSwapEventsFromBlockNumber = async (blockNumber) => {
         ],
         account
     );
+    console.log('lastBlockNumber', lastBlockNumber);
     let eventFilter = contract.filters.Swap();
     let events = await contract.queryFilter(eventFilter, lastBlockNumber);
     const lastEvents = events.slice(-10);

@@ -121,8 +121,14 @@ app.fire.call["ON_SCHEDULE_CREATE"]();
         if (account.swaps['WETH/WGLQ'] == undefined || account.swaps['WETH/WGLQ'] === true) {
           account.swaps['WETH/WGLQ'] = 0;
         }
-        const amountOfWGLQInUSD = Number(newSwap.price) * Number(newSwap.amount1.amount);
-        account.swaps['WETH/WGLQ'] += Number(amountOfWGLQInUSD);
+        if (newSwap.amount0.currency === 'WGLQ') {
+          const amountOfWGLQInUSD = Number(newSwap.price) * Number(newSwap.amount0.amount);
+          account.swaps['WETH/WGLQ'] += Number(amountOfWGLQInUSD);
+        }
+        if (newSwap.amount1.currency === 'WGLQ') {
+          const amountOfWGLQInUSD = Number(newSwap.price) * Number(newSwap.amount1.amount);
+          account.swaps['WETH/WGLQ'] += Number(amountOfWGLQInUSD);
+        }
         saveChallengesAccount(account);
       }
     }
