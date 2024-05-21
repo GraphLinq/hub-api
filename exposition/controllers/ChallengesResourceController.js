@@ -87,7 +87,7 @@ const ChallengesResourceController = {
             let i = (page * size) - size;
             const ladderPartition = [];
             if (accountsWithPoints.length > i) {
-                for (;i < (page * size) + size; i++) {
+                for (;i < (page * size); i++) {
                     if (accountsWithPoints[i] === undefined) {
                         break ;
                     }
