@@ -42,8 +42,14 @@ const PriceResourceController = {
                 if (acc.lowPrice > Number(s.price)) {
                     acc.lowPrice = Number(s.price);
                 }
-                acc.volume += Number(s.amount0.amount);
-                acc.WGLQSwap24h += Number(s.amount1.amount);
+                if (s.amount0.currency === 'WGLQ' && s.amount1.currency === 'WETH') {
+                    acc.volume += Number(s.amount1.amount);
+                    acc.WGLQSwap24h += Number(s.amount0.amount);
+                }
+                if (s.amount0.currency === 'WETH' && s.amount1.currency === 'WGLQ') {
+                    acc.volume += Number(s.amount0.amount);
+                    acc.WGLQSwap24h += Number(s.amount1.amount);
+                }
 
                 return acc;
             }, {
