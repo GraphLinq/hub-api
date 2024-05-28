@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const path = './analytics/challengesAccounts.json';
+const path = './analytics/challenges-accounts.json';
 
 const getAllChallengesAccounts = () => {
     if (fs.existsSync(path)) {

@@ -4,17 +4,12 @@ const orm = require("orm");
 
 const PrinterQueue = require("./models/PrinterQueue");
 
-/**
- *  https://github.com/dresende/node-orm2
- */
 module.exports = function(opts) {
     return function(app) {
-        //https://auth-db326.hostinger.com/index.php
 
         orm.settings.set("connection.reconnect", true);
 
         function load() {
-            // orm.connect("mysql://u547689448_tasknet:tishirt@45.87.80.46/u547689448_tasknet?pool=true", function (err, db) {
             orm.connect(opts, function (err, db) {
                 if (err) {
                     console.error(err);

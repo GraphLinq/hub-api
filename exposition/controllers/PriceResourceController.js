@@ -50,7 +50,6 @@ const PriceResourceController = {
                     acc.volume += Number(s.amount0.amount);
                     acc.WGLQSwap24h += Number(s.amount1.amount);
                 }
-
                 return acc;
             }, {
                 highPrice: 0,
