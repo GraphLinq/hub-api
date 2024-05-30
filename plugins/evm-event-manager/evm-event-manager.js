@@ -94,15 +94,20 @@ module.exports = function(app) {
                 }
                 let inProgress = false;
                 const fnDo = async () => {
-                    if (inProgress) {
-                        console.log(`[${((new Date()).toISOString())}] - [${key}] - doEventTracking - BUSY`);
-                        return ;
+                    try {
+                        if (inProgress) {
+                            console.log(`[${((new Date()).toISOString())}] - [${key}] - doEventTracking - BUSY`);
+                            return ;
+                        }
+                        inProgress = true;
+                        console.log(`[${((new Date()).toISOString())}] - [${key}] - doEventTracking - START`);
+                        await doEventTracking(key, networkName, contractAddress, contractFunctions, eventFunctionName, eventFormatterFn, callbackNewEventFn);
+                        console.log(`[${((new Date()).toISOString())}] - [${key}] - doEventTracking - FINISHED`);
+                        inProgress = false;
+                    } catch (e) {
+                        inProgress = false;
+                        console.log(e);
                     }
-                    inProgress = true;
-                    console.log(`[${((new Date()).toISOString())}] - [${key}] - doEventTracking - START`);
-                    await doEventTracking(key, networkName, contractAddress, contractFunctions, eventFunctionName, eventFormatterFn, callbackNewEventFn);
-                    console.log(`[${((new Date()).toISOString())}] - [${key}] - doEventTracking - FINISHED`);
-                    inProgress = false;
                 };
                 setInterval(fnDo, 60000); // one time per minute
                 await fnDo();
