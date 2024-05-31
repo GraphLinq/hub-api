@@ -248,15 +248,16 @@ app.evmEventManager.do(
           from: txReceipt.from,
           amount0: {
             currency: 'WETH',
-            amount: Number(event.args.amount0)
+            amount: Math.abs(Number(ethers.utils.formatEther(event.args.amount0))).toFixed(18)
           },
           amount1: {
             currency: 'WGLQ',
-            amount: Number(event.args.amount1)
+            amount: Math.abs(Number(ethers.utils.formatEther(event.args.amount1))).toFixed(18)
           },
         };
     }, (newMint) => {
       try {
+        console.log(newMint);
         const account = getChallengesAccount(newMint.from);
         if (account.liquidityPoolsPositions === undefined) {
           account.liquidityPoolsPositions = {};
