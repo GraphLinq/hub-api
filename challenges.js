@@ -122,17 +122,17 @@ const getAllChallenges = () => {
             available: false
         },
         {
-            id: 'BRIDGE-ETH-ON-THE-GLQ-CHAIN-1-10K',
-            label: 'Bridge ETH on the GLQ Chain 1-10K',
+            id: 'BRIDGE-ETH-ON-THE-GLQ-CHAIN-0.01-1',
+            label: 'Bridge 0.01 ETH on the GLQ Chain',
             reward: 1,
             progression: (account) => {
-                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 1) {
+                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 0.01) {
                     return 100;
                 }
                 return 0;
             },
             status: (account) => {
-                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 1) {
+                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 0.01) {
                     return 'COMPLETED';
                 }
                 return 'IN_PROGRESS';
@@ -140,17 +140,17 @@ const getAllChallenges = () => {
             available: true
         },
         {
-            id: 'BRIDGE-ETH-ON-THE-GLQ-CHAIN-10-50K',
-            label: 'Bridge ETH on the GLQ Chain 10-50K',
+            id: 'BRIDGE-ETH-ON-THE-GLQ-CHAIN-1',
+            label: 'Bridge 1 ETH on the GLQ Chain',
             reward: 5,
             progression: (account) => {
                 if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 1) {
-                    return Math.min(account?.bridges['WETH_GLQCHAIN'] * 100 / 10000, 100);
+                    return Math.min(account?.bridges['WETH_GLQCHAIN'] * 100 / 1, 100);
                 }
                 return 0;
             },
             status: (account) => {
-                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 10000) {
+                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 1) {
                     return 'COMPLETED';
                 }
                 return 'IN_PROGRESS';
@@ -158,17 +158,17 @@ const getAllChallenges = () => {
             available: true
         },
         {
-            id: 'BRIDGE-ETH-ON-THE-GLQ-CHAIN-50-100K',
-            label: 'Bridge ETH on the GLQ Chain 50-100K',
+            id: 'BRIDGE-ETH-ON-THE-GLQ-CHAIN-5',
+            label: 'Bridge 5 ETH on the GLQ Chain',
             reward: 10,
             progression: (account) => {
-                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 1) {
-                    return Math.min(account?.bridges['WETH_GLQCHAIN'] * 100 / 50000, 100);
+                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 5) {
+                    return Math.min(account?.bridges['WETH_GLQCHAIN'] * 100 / 5, 100);
                 }
                 return 0;
             },
             status: (account) => {
-                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 50000) {
+                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 5) {
                     return 'COMPLETED';
                 }
                 return 'IN_PROGRESS';
@@ -176,17 +176,17 @@ const getAllChallenges = () => {
             available: true
         },
         {
-            id: 'BRIDGE-ETH-ON-THE-GLQ-CHAIN-100K+',
-            label: 'Bridge ETH on the GLQ Chain 100K+',
+            id: 'BRIDGE-ETH-ON-THE-GLQ-CHAIN-10',
+            label: 'Bridge 10 ETH on the GLQ Chain',
             reward: 15,
             progression: (account) => {
                 if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 1) {
-                    return Math.min(account?.bridges['WETH_GLQCHAIN'] * 100 / 100000, 100);
+                    return Math.min(account?.bridges['WETH_GLQCHAIN'] * 100 / 10, 100);
                 }
                 return 0;
             },
             status: (account) => {
-                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 100000) {
+                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 10) {
                     return 'COMPLETED';
                 }
                 return 'IN_PROGRESS';
