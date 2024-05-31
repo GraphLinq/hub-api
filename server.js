@@ -235,24 +235,26 @@ fs.rmSync('./analytics/evmEventManager-PositionsEvents.json');
 app.evmEventManager.do(
     'evmEventManager-PositionsEvents',
     'GLQ',
-    1500000,
+    2100000,
     '0x2f734ea5474792513b4EC73B38A2A6c103A12a6f',
     ['event Mint(address sender, address indexed owner, int24 indexed tickLower, int24 indexed tickUpper, uint128 amount, uint256 amount0, uint256 amount1)'],
     'Mint',
       async (event, provider) => {
-      return {
-        pool: 'WETH/WGLQ',
-        hash: event.transactionHash,
-        from: event.args.sender,
-        amount0: {
-          currency: 'WETH',
-          amount: Math.abs(Number(ethers.utils.formatEther(event.args.amount0))).toFixed(18)
-        },
-        amount1: {
-          currency: 'WGLQ',
-          amount: Math.abs(Number(ethers.utils.formatEther(event.args.amount1))).toFixed(18)
-        },
-      };
+        const txReceipt = await event.getTransactionReceipt();
+
+        return {
+          pool: 'WETH/WGLQ',
+          hash: event.transactionHash,
+          from: txReceipt.from,
+          amount0: {
+            currency: 'WETH',
+            amount: Math.abs(Number(ethers.utils.formatEther(event.args.amount0))).toFixed(18)
+          },
+          amount1: {
+            currency: 'WGLQ',
+            amount: Math.abs(Number(ethers.utils.formatEther(event.args.amount1))).toFixed(18)
+          },
+        };
     }, (newMint) => {
       try {
         const account = getChallengesAccount(newMint.from);
