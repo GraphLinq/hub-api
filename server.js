@@ -258,8 +258,8 @@ app.evmEventManager.do(
     }, (newMint) => {
       try {
         const account = getChallengesAccount(newMint.from);
-        if (account.liquidityPools === undefined) {
-          account.liquidityPools = {};
+        if (account.liquidityPoolsPositions === undefined) {
+          account.liquidityPoolsPositions = {};
         }
         if (account.hashs === undefined) {
           account.hashs = [];
@@ -268,14 +268,14 @@ app.evmEventManager.do(
           return ;
         }
         account.hashs.push(newMint.hash);
-        if (account.liquidityPools[newMint.pool] === undefined || account.liquidityPools[newMint.pool][newMint.amount0.currency] === undefined) {
-          account.liquidityPools[newMint.pool] = {
+        if (account.liquidityPoolsPositions[newMint.pool] === undefined || account.liquidityPoolsPositions[newMint.pool][newMint.amount0.currency] === undefined) {
+          account.liquidityPoolsPositions[newMint.pool] = {
             [newMint.amount0.currency]: 0,
             [newMint.amount1.currency]: 0
           };
         }
-        account.liquidityPools[newMint.pool][newMint.amount0.currency] += Number(newMint.amount0.amount);
-        account.liquidityPools[newMint.pool][newMint.amount1.currency] += Number(newMint.amount1.amount);
+        account.liquidityPoolsPositions[newMint.pool][newMint.amount0.currency] += Number(newMint.amount0.amount);
+        account.liquidityPoolsPositions[newMint.pool][newMint.amount1.currency] += Number(newMint.amount1.amount);
         saveChallengesAccount(account);
       } catch(e) {
         console.log(e);

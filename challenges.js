@@ -78,13 +78,13 @@ const getAllChallenges = () => {
             label: 'Add 1 WGLQ of liquidity on WETH-WGLQ Pool',
             reward: 1,
             progression: (account) => {
-                if (account?.liquidityPools !== undefined && account.liquidityPools['WETH/WGLQ'] !== undefined && account.liquidityPools['WETH/WGLQ']['WGLQ'] > 0) {
-                    return Math.min(account.liquidityPools['WETH/WGLQ']['WGLQ'] * 100 / 1, 100);
+                if (account?.liquidityPoolsPositions !== undefined && account.liquidityPoolsPositions['WETH/WGLQ'] !== undefined && account.liquidityPoolsPositions['WETH/WGLQ']['WGLQ'] > 0) {
+                    return Math.min(account.liquidityPoolsPositions['WETH/WGLQ']['WGLQ'] * 100 / 1, 100);
                 }
                 return 0;
             },
             status: (account) => {
-                if (account?.liquidityPools !== undefined && account.liquidityPools['WETH/WGLQ'] !== undefined && account.liquidityPools['WETH/WGLQ']['WGLQ'] >= 1) {
+                if (account?.liquidityPoolsPositions !== undefined && account.liquidityPoolsPositions['WETH/WGLQ'] !== undefined && account.liquidityPoolsPositions['WETH/WGLQ']['WGLQ'] >= 1) {
                     return 'COMPLETED';
                 }
                 return 'IN_PROGRESS';
@@ -96,13 +96,13 @@ const getAllChallenges = () => {
             label: 'Add 1,000 WGLQ of liquidity on WETH-WGLQ Pool',
             reward: 5,
             progression: (account) => {
-                if (account?.liquidityPools !== undefined && account.liquidityPools['WETH/WGLQ'] !== undefined && account.liquidityPools['WETH/WGLQ']['WGLQ'] > 0) {
-                    return Math.min(account.liquidityPools['WETH/WGLQ']['WGLQ'] * 100 / 1000, 100);
+                if (account?.liquidityPoolsPositions !== undefined && account.liquidityPoolsPositions['WETH/WGLQ'] !== undefined && account.liquidityPoolsPositions['WETH/WGLQ']['WGLQ'] > 0) {
+                    return Math.min(account.liquidityPoolsPositions['WETH/WGLQ']['WGLQ'] * 100 / 1000, 100);
                 }
                 return 0;
             },
             status: (account) => {
-                if (account?.liquidityPools !== undefined && account.liquidityPools['WETH/WGLQ'] !== undefined && account.liquidityPools['WETH/WGLQ']['WGLQ'] >= 1000) {
+                if (account?.liquidityPoolsPositions !== undefined && account.liquidityPoolsPositions['WETH/WGLQ'] !== undefined && account.liquidityPoolsPositions['WETH/WGLQ']['WGLQ'] >= 1000) {
                     return 'COMPLETED';
                 }
                 return 'IN_PROGRESS';
@@ -114,13 +114,13 @@ const getAllChallenges = () => {
             label: 'Add 10,000 WGLQ of liquidity on WETH-WGLQ Pool',
             reward: 10,
             progression: (account) => {
-                if (account?.liquidityPools !== undefined && account.liquidityPools['WETH/WGLQ'] !== undefined && account.liquidityPools['WETH/WGLQ']['WGLQ'] > 0) {
-                    return Math.min(account.liquidityPools['WETH/WGLQ']['WGLQ'] * 100 / 10000, 100);
+                if (account?.liquidityPoolsPositions !== undefined && account.liquidityPoolsPositions['WETH/WGLQ'] !== undefined && account.liquidityPoolsPositions['WETH/WGLQ']['WGLQ'] > 0) {
+                    return Math.min(account.liquidityPoolsPositions['WETH/WGLQ']['WGLQ'] * 100 / 10000, 100);
                 }
                 return 0;
             },
             status: (account) => {
-                if (account?.liquidityPools !== undefined && account.liquidityPools['WETH/WGLQ'] !== undefined && account.liquidityPools['WETH/WGLQ']['WGLQ'] >= 10000) {
+                if (account?.liquidityPoolsPositions !== undefined && account.liquidityPoolsPositions['WETH/WGLQ'] !== undefined && account.liquidityPoolsPositions['WETH/WGLQ']['WGLQ'] >= 10000) {
                     return 'COMPLETED';
                 }
                 return 'IN_PROGRESS';
@@ -132,13 +132,13 @@ const getAllChallenges = () => {
             label: 'Add 100,000 WGLQ of liquidity on WETH-WGLQ Pool',
             reward: 15,
             progression: (account) => {
-                if (account?.liquidityPools !== undefined && account.liquidityPools['WETH/WGLQ'] !== undefined && account.liquidityPools['WETH/WGLQ']['WGLQ'] > 0) {
-                    return Math.min(account.liquidityPools['WETH/WGLQ']['WGLQ'] * 100 / 100000, 100);
+                if (account?.liquidityPoolsPositions !== undefined && account.liquidityPoolsPositions['WETH/WGLQ'] !== undefined && account.liquidityPoolsPositions['WETH/WGLQ']['WGLQ'] > 0) {
+                    return Math.min(account.liquidityPoolsPositions['WETH/WGLQ']['WGLQ'] * 100 / 100000, 100);
                 }
                 return 0;
             },
             status: (account) => {
-                if (account?.liquidityPools !== undefined && account.liquidityPools['WETH/WGLQ'] !== undefined && account.liquidityPools['WETH/WGLQ']['WGLQ'] >= 100000) {
+                if (account?.liquidityPoolsPositions !== undefined && account.liquidityPoolsPositions['WETH/WGLQ'] !== undefined && account.liquidityPoolsPositions['WETH/WGLQ']['WGLQ'] >= 100000) {
                     return 'COMPLETED';
                 }
                 return 'IN_PROGRESS';
