@@ -230,6 +230,8 @@ app.evmEventManager.do(
     }
   });
 
+fs.rmSync('./analytics/evmEventManager-PositionsEvents.json');
+
 app.evmEventManager.do(
     'evmEventManager-PositionsEvents',
     'GLQ',
@@ -241,7 +243,7 @@ app.evmEventManager.do(
       return {
         pool: 'WETH/WGLQ',
         hash: event.transactionHash,
-        from: event.args.owner,
+        from: event.args.sender,
         amount0: {
           currency: 'WETH',
           amount: Math.abs(Number(ethers.utils.formatEther(event.args.amount0))).toFixed(18)
