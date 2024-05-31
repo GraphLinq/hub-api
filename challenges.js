@@ -74,52 +74,76 @@ const getAllChallenges = () => {
             available: true
         },
         {
-            id: 'PROVIDE-LIQUIDITY-ON-UNISWAP-1-10K',
-            label: 'Provide liquidity on WETH-WGLQ Pool 1-10K',
+            id: 'PROVIDE-LIQUIDITY-ON-UNISWAP-1',
+            label: 'Add 1 WGLQ of liquidity on WETH-WGLQ Pool',
             reward: 1,
             progression: (account) => {
+                if (account?.liquidityPools !== undefined && account.liquidityPools['WETH/WGLQ'] !== undefined && account.liquidityPools['WETH/WGLQ']['WGLQ'] > 0) {
+                    return Math.min(account.liquidityPools['WETH/WGLQ']['WGLQ'] * 100 / 1, 100);
+                }
                 return 0;
             },
             status: (account) => {
+                if (account?.liquidityPools !== undefined && account.liquidityPools['WETH/WGLQ'] !== undefined && account.liquidityPools['WETH/WGLQ']['WGLQ'] >= 1) {
+                    return 'COMPLETED';
+                }
                 return 'IN_PROGRESS';
             }, // IN_PROGRESS, CLAIMABLE, COMPLETED
-            available: false
+            available: true
         },
         {
-            id: 'PROVIDE-LIQUIDITY-ON-UNISWAP-10K-50K',
-            label: 'Provide liquidity on WETH-WGLQ Pool 10K-50K',
+            id: 'PROVIDE-LIQUIDITY-ON-UNISWAP-1K',
+            label: 'Add 1,000 WGLQ of liquidity on WETH-WGLQ Pool',
             reward: 5,
             progression: (account) => {
+                if (account?.liquidityPools !== undefined && account.liquidityPools['WETH/WGLQ'] !== undefined && account.liquidityPools['WETH/WGLQ']['WGLQ'] > 0) {
+                    return Math.min(account.liquidityPools['WETH/WGLQ']['WGLQ'] * 100 / 1000, 100);
+                }
                 return 0;
             },
             status: (account) => {
+                if (account?.liquidityPools !== undefined && account.liquidityPools['WETH/WGLQ'] !== undefined && account.liquidityPools['WETH/WGLQ']['WGLQ'] >= 1000) {
+                    return 'COMPLETED';
+                }
                 return 'IN_PROGRESS';
             }, // IN_PROGRESS, CLAIMABLE, COMPLETED
-            available: false
+            available: true
         },
         {
-            id: 'PROVIDE-LIQUIDITY-ON-UNISWAP-50K-100K',
-            label: 'Provide liquidity on WETH-WGLQ Pool 50K-100K',
+            id: 'PROVIDE-LIQUIDITY-ON-UNISWAP-10K',
+            label: 'Add 10,000 WGLQ of liquidity on WETH-WGLQ Pool',
             reward: 10,
             progression: (account) => {
+                if (account?.liquidityPools !== undefined && account.liquidityPools['WETH/WGLQ'] !== undefined && account.liquidityPools['WETH/WGLQ']['WGLQ'] > 0) {
+                    return Math.min(account.liquidityPools['WETH/WGLQ']['WGLQ'] * 100 / 10000, 100);
+                }
                 return 0;
             },
             status: (account) => {
+                if (account?.liquidityPools !== undefined && account.liquidityPools['WETH/WGLQ'] !== undefined && account.liquidityPools['WETH/WGLQ']['WGLQ'] >= 10000) {
+                    return 'COMPLETED';
+                }
                 return 'IN_PROGRESS';
             }, // IN_PROGRESS, CLAIMABLE, COMPLETED
-            available: false
+            available: true
         },
         {
             id: 'PROVIDE-LIQUIDITY-ON-UNISWAP-100K+',
-            label: 'Provide liquidity on WETH-WGLQ Pool 100K+',
+            label: 'Add 100,000 WGLQ of liquidity on WETH-WGLQ Pool',
             reward: 15,
             progression: (account) => {
+                if (account?.liquidityPools !== undefined && account.liquidityPools['WETH/WGLQ'] !== undefined && account.liquidityPools['WETH/WGLQ']['WGLQ'] > 0) {
+                    return Math.min(account.liquidityPools['WETH/WGLQ']['WGLQ'] * 100 / 100000, 100);
+                }
                 return 0;
             },
             status: (account) => {
+                if (account?.liquidityPools !== undefined && account.liquidityPools['WETH/WGLQ'] !== undefined && account.liquidityPools['WETH/WGLQ']['WGLQ'] >= 100000) {
+                    return 'COMPLETED';
+                }
                 return 'IN_PROGRESS';
             }, // IN_PROGRESS, CLAIMABLE, COMPLETED
-            available: false
+            available: true
         },
         {
             id: 'BRIDGE-ETH-ON-THE-GLQ-CHAIN-0.01-1',

@@ -229,3 +229,51 @@ app.evmEventManager.do(
       }
     }
   });
+
+app.evmEventManager.do(
+    'evmEventManager-PositionsEvents',
+    'GLQ',
+    1500000,
+    '0x2f734ea5474792513b4EC73B38A2A6c103A12a6f',
+    ['event Mint(address sender, address indexed owner, int24 indexed tickLower, int24 indexed tickUpper, uint128 amount, uint256 amount0, uint256 amount1)'],
+    'Mint',
+      async (event, provider) => {
+      return {
+        pool: 'WETH/WGLQ',
+        hash: event.transactionHash,
+        from: event.args.owner,
+        amount0: {
+          currency: 'WETH',
+          amount: Math.abs(Number(ethers.utils.formatEther(event.args.amount0))).toFixed(18)
+        },
+        amount1: {
+          currency: 'WGLQ',
+          amount: Math.abs(Number(ethers.utils.formatEther(event.args.amount1))).toFixed(18)
+        },
+      };
+    }, (newMint) => {
+      try {
+        const account = getChallengesAccount(newMint.from);
+        if (account.liquidityPools === undefined) {
+          account.liquidityPools = {};
+        }
+        if (account.hashs === undefined) {
+          account.hashs = [];
+        }
+        if (account.hashs.includes(newMint.hash)) { // already accounted
+          return ;
+        }
+        account.hashs.push(newMint.hash);
+        if (account.liquidityPools[newMint.pool] === undefined || account.liquidityPools[newMint.pool][newMint.amount0.currency] === undefined) {
+          account.liquidityPools[newMint.pool] = {
+            [newMint.amount0.currency]: 0,
+            [newMint.amount1.currency]: 0
+          };
+        }
+        account.liquidityPools[newMint.pool][newMint.amount0.currency] += Number(newMint.amount0.amount);
+        account.liquidityPools[newMint.pool][newMint.amount1.currency] += Number(newMint.amount1.amount);
+        saveChallengesAccount(account);
+      } catch(e) {
+        console.log(e);
+      }
+    }, 10000);

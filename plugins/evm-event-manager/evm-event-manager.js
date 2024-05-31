@@ -32,7 +32,7 @@ module.exports = function(app) {
                 return data[hash];
             }
         },
-        do: (key, networkName, defaultStartBlockNumber = 1, contractAddress, contractFunctions, eventFunctionName, eventFormatterFn, callbackNewEventFn) => {
+        do: (key, networkName, defaultStartBlockNumber = 1, contractAddress, contractFunctions, eventFunctionName, eventFormatterFn, callbackNewEventFn, numberOfBlockPerBatch = 1000) => {
             setTimeout(async () => {
                 const getNetworkProvider = (networkName) => {
                     const provider = new ethers.providers.JsonRpcProvider({
@@ -72,7 +72,7 @@ module.exports = function(app) {
                     }
                     const lastBlockNumberWhereWeAre = app.evmEventManager.db.get(key, 'blockNumber').value;
                     const lastBlockNumber = await provider.getBlockNumber();
-                    const numberOfBlockPerBatch = 1000;
+                    // const numberOfBlockPerBatch = 1000;
 
                     for (let i = lastBlockNumberWhereWeAre; i < lastBlockNumber; i += numberOfBlockPerBatch) {
                         const targetBlockNumber = i + numberOfBlockPerBatch > lastBlockNumber ? lastBlockNumber : i + numberOfBlockPerBatch; 
