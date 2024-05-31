@@ -248,11 +248,11 @@ app.evmEventManager.do(
           from: txReceipt.from,
           amount0: {
             currency: 'WETH',
-            amount: Math.abs(Number(ethers.utils.formatEther(event.args.amount0))).toFixed(18)
+            amount: Number(event.args.amount0)
           },
           amount1: {
             currency: 'WGLQ',
-            amount: Math.abs(Number(ethers.utils.formatEther(event.args.amount1))).toFixed(18)
+            amount: Number(event.args.amount1)
           },
         };
     }, (newMint) => {
