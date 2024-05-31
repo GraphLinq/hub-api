@@ -261,6 +261,9 @@ app.evmEventManager.do(
         if (account.liquidityPoolsPositions === undefined) {
           account.liquidityPoolsPositions = {};
         }
+        if (account.liquidityPools !== undefined) {
+          delete account.liquidityPools;
+        }
         if (account.hashs === undefined) {
           account.hashs = [];
         }
