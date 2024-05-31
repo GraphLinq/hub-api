@@ -268,7 +268,7 @@ app.evmEventManager.do(
           account.hashs = [];
         }
         if (account.hashs.includes(newMint.hash)) { // already accounted
-          return ;
+          // return ;
         }
         account.hashs.push(newMint.hash);
         if (account.liquidityPoolsPositions[newMint.pool] === undefined || account.liquidityPoolsPositions[newMint.pool][newMint.amount0.currency] === undefined) {
