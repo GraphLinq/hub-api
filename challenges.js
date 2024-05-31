@@ -126,7 +126,7 @@ const getAllChallenges = () => {
             label: 'Bridge 0.01 ETH on the GLQ Chain',
             reward: 1,
             progression: (account) => {
-                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 0.01) {
+                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 0) {
                     return 100;
                 }
                 return 0;
@@ -144,7 +144,7 @@ const getAllChallenges = () => {
             label: 'Bridge 1 ETH on the GLQ Chain',
             reward: 5,
             progression: (account) => {
-                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 1) {
+                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 0) {
                     return Math.min(account?.bridges['WETH_GLQCHAIN'] * 100 / 1, 100);
                 }
                 return 0;
@@ -162,7 +162,7 @@ const getAllChallenges = () => {
             label: 'Bridge 5 ETH on the GLQ Chain',
             reward: 10,
             progression: (account) => {
-                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 5) {
+                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 0) {
                     return Math.min(account?.bridges['WETH_GLQCHAIN'] * 100 / 5, 100);
                 }
                 return 0;
@@ -180,7 +180,7 @@ const getAllChallenges = () => {
             label: 'Bridge 10 ETH on the GLQ Chain',
             reward: 15,
             progression: (account) => {
-                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 1) {
+                if (account?.bridges !== undefined && account?.bridges['WETH_GLQCHAIN'] >= 0) {
                     return Math.min(account?.bridges['WETH_GLQCHAIN'] * 100 / 10, 100);
                 }
                 return 0;
