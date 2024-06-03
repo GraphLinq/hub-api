@@ -230,11 +230,19 @@ app.evmEventManager.do(
     }
   });
 
-app.evmEventManager.do(
-    'evmEventManager-PositionsEvents',
+const evmPositionsEvents = [
+  ['evmEventManager-PositionsEvents-10000', '0x2f734ea5474792513b4EC73B38A2A6c103A12a6f'], // 1% pool
+  ['evmEventManager-PositionsEvents-3000', '0x04391851210bd132ADDe72De7f07ACede7b4AD97'], // 0.30% pool
+  ['evmEventManager-PositionsEvents-500', '0xe08b108059c7312A905D633315caeA19755114fe'], // 0.05% pool
+  ['evmEventManager-PositionsEvents-100', '0xc6CD370f2648AACE07C7C9612A88243ADef97D8B'] // 0.01% pool
+];
+
+for (let eventDo of evmPositionsEvents) {
+  app.evmEventManager.do(
+    eventDo[0], // 1%
     'GLQ',
     2100000,
-    '0x2f734ea5474792513b4EC73B38A2A6c103A12a6f',
+    eventDo[1],
     ['event Mint(address sender, address indexed owner, int24 indexed tickLower, int24 indexed tickUpper, uint128 amount, uint256 amount0, uint256 amount1)'],
     'Mint',
       async (event, provider) => {
@@ -283,3 +291,4 @@ app.evmEventManager.do(
         console.log(e);
       }
     }, 10000);
+}
