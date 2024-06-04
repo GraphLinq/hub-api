@@ -1,7 +1,7 @@
 const { priceScheduler, pricesScheduler, savePrices, getPricesInCache } = require('./schedulers/priceScheduler');
 const { swapEventsHook, getSwapEventsFromBlockNumber } = require('./schedulers/swapEventsScheduler');
 const fs = require('fs');
-const { managerSwapsData } = require('./schedulers/swapManager');
+const { managerSwapsData, addSwap } = require('./schedulers/swapManager');
 const { getStakingTVL, saveStakingTVL } = require('./schedulers/stakingScheduler');
 const { getTotalLiquidAssetsOnChain, saveTotalLiquidAssetsOnChain } = require('./schedulers/totalLiquidAssetsOnChainScheduler');
 const { getChallengesAccount, saveChallengesAccount } = require('./challengesAccounts');
@@ -197,7 +197,8 @@ app.evmEventManager.do(
       price: (priceInToken0 * prices.ETH).toFixed(18),
       gasCostUsed: (Number(ethers.utils.formatEther(txReceipt.gasUsed.mul(gasPrice))) * prices.GLQ).toFixed(18)
     };
-  }, (newSwap) => {
+  }, async (newSwap) => {
+    await addSwap(newSwap);
     if (newSwap.pool === 'WETH/WGLQ') {
       try {
         const account = getChallengesAccount(newSwap.recipient);

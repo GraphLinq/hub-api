@@ -67,5 +67,6 @@ const getSwaps = async () => {
 module.exports = {
     managerSwapsData,
     getLastTenSwaps,
-    getSwaps
+    getSwaps,
+    addSwap
 };
